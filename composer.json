@@ -1,0 +1,21 @@
+{
+    "name": "tdan/sorted-linked-list",
+    "description": "Sorted Linked List library",
+    "type": "library",
+    "license": "GPL-2",
+    "autoload": {
+        "psr-4": {
+            "Tdan\\SortedLinkedList\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Trung (Daniel) An",
+            "email": "fifty8co@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.3"
+    }
+}
