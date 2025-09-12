@@ -171,4 +171,3 @@ final class SortedLinkedListTest extends TestCase
         $this->assertEquals([5, 10, 10, 15, 20], $iterator);
     }
 }
-?>

@@ -10,7 +10,7 @@ use Tdan\SortedLinkedList\Node;
  * Class representing a sorted linked list
  *
  * @package Tdan\SortedLinkedList
- * @implements \IteratorAggregate<int, string|int> 
+ * @implements \IteratorAggregate<int, string|int>
  */
 class SortedLinkedList implements \IteratorAggregate
 {
@@ -44,9 +44,8 @@ class SortedLinkedList implements \IteratorAggregate
      */
     public function add(string|int $value): void
     {
-        if (!$this->checkType($value))
-        {
-            throw new \InvalidArgumentException("Type mismatched. Please provide value of type {$this->type}");
+        if (!$this->checkType($value)) {
+            throw new \InvalidArgumentException("Type mismatched. Value must be of type {$this->type}");
         }
 
         $newNode = new Node($value);
@@ -55,9 +54,10 @@ class SortedLinkedList implements \IteratorAggregate
         $prev = null;
 
         // Slide right to find correct insertion point
-        while ($current != null && 
-            $current->compareValue($value) < 0) 
-        {
+        while (
+            $current != null &&
+            $current->compareValue($value) < 0
+        ) {
             $prev = $current;
             $current = $current->next;
         }
@@ -65,8 +65,7 @@ class SortedLinkedList implements \IteratorAggregate
         if ($prev == null) {
             $this->head = $newNode;
             $newNode->next = $current;
-        }
-        else {
+        } else {
             $prev->next = $newNode;
             $newNode->next = $current;
         }
@@ -83,20 +82,13 @@ class SortedLinkedList implements \IteratorAggregate
      */
     public function contains(string|int $value): bool
     {
-        if ($this->size == 0) {
-            return false;
-        }
-
-        if (!$this->checkType($value))
-        {
-            throw new \InvalidArgumentException("Type mismatched. Please provide value of type {$this->type}");
+        if (!$this->checkType($value)) {
+            throw new \InvalidArgumentException("Type mismatched. Value must be of type {$this->type}");
         }
 
         $current = $this->head;
-        while ($current != null) 
-        {
-            if ($current->compareValue($value) == 0)
-            {
+        while ($current != null) {
+            if ($current->compareValue($value) == 0) {
                 return true;
             }
 
@@ -108,7 +100,7 @@ class SortedLinkedList implements \IteratorAggregate
 
     /**
      * Remove the first node from the linked list
-     *  
+     *
      * @return string|int Return the removed node
      */
     public function pop(): string|int
@@ -126,30 +118,22 @@ class SortedLinkedList implements \IteratorAggregate
 
     /**
      * Remove a value from the linked list
-     *  
+     *
      * @param string|int $value
-     */ 
+     */
     public function remove(string|int $value): void
     {
-        if ($this->size == 0) {
-            return;
-        }
-
-        if (!$this->checkType($value))
-        {
-            throw new \InvalidArgumentException("Type mismatched. Please provide value of type {$this->type}");
+        if (!$this->checkType($value)) {
+            throw new \InvalidArgumentException("Type mismatched. Value must be of type {$this->type}");
         }
 
         $current = $this->head;
         $prev = null;
-        while ($current != null)
-        {
-            if ($current->compareValue($value) == 0)
-            {
+        while ($current != null) {
+            if ($current->compareValue($value) == 0) {
                 if ($prev == null) {
                     $this->head = $current->next;
-                }
-                else {
+                } else {
                     $prev->next = $current->next;
                 }
 
@@ -160,7 +144,6 @@ class SortedLinkedList implements \IteratorAggregate
             $prev = $current;
             $current = $current->next;
         }
-
     }
 
     /**
@@ -190,9 +173,9 @@ class SortedLinkedList implements \IteratorAggregate
 
     /**
      * Get an iterator for the linked list
-     * 
+     *
      * @return \Traversable<int, string|int> Iterator for the linked list
-     */ 
+     */
     public function getIterator(): \Traversable
     {
         $current = $this->head;
@@ -204,19 +187,19 @@ class SortedLinkedList implements \IteratorAggregate
 
     /**
      * Get the size of the linked list
-     * 
+     *
      * @return int Size of the linked list
-     */ 
-    public function size(): int 
+     */
+    public function size(): int
     {
         return $this->size;
     }
 
     /**
      * Get the type of the linked list
-     * 
+     *
      * @return string Type of the linked list
-     */ 
+     */
     public function type(): string
     {
         return $this->type;
@@ -244,4 +227,3 @@ class SortedLinkedList implements \IteratorAggregate
         return strcmp(gettype($value), $this->type) == 0;
     }
 }
-?>

@@ -36,15 +36,14 @@ final class Node
         if (gettype($this->value) != gettype($value)) {
             throw new \InvalidArgumentException("Cannot compare nodes of different types");
         }
-        
-        if (gettype($value) == "string" &&
-            gettype($this->value) == "string")
-        { 
+
+        if (
+            gettype($value) == "string" &&
+            gettype($this->value) == "string"
+        ) {
             return strcmp($this->value, $value);
         }
 
         return $this->value - $value;
     }
 }
-
-?>
